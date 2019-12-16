@@ -33,20 +33,29 @@
             wp_safe_redirect( empty($survey_page_id) ? get_home_url() : get_permalink($survey_page_id));
             exit();
         }
-
-        echo "<pre>";
-        var_dump($user_status);
-        var_dump(get_option('registration_survey_page_url'));
-        var_dump(get_home_url());
-        echo "</pre>";
-        exit;
     }
 
     add_action( 'wp_login' , 'check_user_approval');
 
 
-    function my_function(){
-        var_dump('lol');
+    function manageNonApprovedUser($request){
+        $user_id = get_current_user_id();
+        if(empty($user_id)) return;
+        $page_name = $request->request;
+        $page = get_page_by_title($page_name);
+        $survey_page = get_post(get_option('registration_survey_page'));
+        $user_status = get_user_meta($user_id, 'account_status', true);
+        $nav = wp_get_nav_menu_items( 'primary');
+        if(!empty($user_status) && $user_status == 'awaiting_admin_review') {
+
+            echo "<pre>";
+            var_dump($page);
+            var_dump($nav);
+            var_dump($request);
+            var_dump(get_nav_menu_locations());
+            var_dump(get_current_user_id());
+            echo "</pre>";
+        }
     }
 
-    add_action( "template_redirect", "my_function" );
+    add_action( "parse_request", "manageNonApprovedUser" );
