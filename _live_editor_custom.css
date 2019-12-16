@@ -1,0 +1,22 @@
+.entry-title {display:none!important;}
+
+img.custom-logo{
+    max-width: 90px;
+}
+
+.elementor-element .elementor-text-editor .elementor-clearfix p a{
+    color: #fff;
+}
+
+#menu-menu a {
+    font-weight: 600;
+    color: #00439b !important;
+}
+
+a{
+    color: #fff;
+}
+
+a:hover{
+    color: #919eff;
+}
