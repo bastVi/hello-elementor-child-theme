@@ -10,6 +10,74 @@
 */
 
 
+/* ---------- Not approved user style ---------- */
+body.awaiting-admin-review ul.menu .menu-item-type-custom.forum-nav-item {
+    display: none !important;
+}
+
+body.awaiting-admin-review ul.menu .menu-item-type-custom.forum-nav-item > a {
+    pointer-events: none !important;
+}
+
+html body.awaiting-admin-review.logged-in .require-user-approved {
+    display: none !important;
+    visibility: hidden; !important;
+}
+
+html body.no-user-logged .require-user-approved {
+    display: none !important;
+    visibility: hidden; !important;
+}
+
+html body:not(.logged-in) .require-user-approved {
+    display: none !important;
+    visibility: hidden; !important;
+}
+
+html body:not(.survey-not-sent) .only-not-approved {
+    display: none !important;
+    visibility: hidden; !important;
+}
+
+/* Other*/
 input[name="registration_survey_page_url"] {
     min-width: 240px;
+}
+
+#survey-results h4 {
+    color: #18439b;
+}
+
+#survey-results thead th {
+    background-color: #2D3B4C;
+    border: none;
+    color: white;
+    position: relative;
+}
+
+#survey-results thead th:first-of-type {
+    border-top-left-radius: 6px;
+    width: 68%;
+}
+
+#survey-results thead th:first-of-type:after {
+    content: '';
+    position: absolute;
+    display: block;
+    right: 2%;
+    height: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    border-radius: 4px;
+    background-color: white;
+    transform: translateY(50%);
+}
+
+#survey-results thead th:last-of-type {
+    border-top-right-radius: 6px;
+}
+
+#survey-results tbody tr > td {
+    border-color: #e9e9e9;
 }
