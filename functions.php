@@ -117,15 +117,16 @@
 
     add_action("parse_request", "manageNonApprovedUserNav");
 
-//    add_action( 'user_register', 'manageNewUser', 1, 1);
+	add_action( 'user_register', 'manageNewUser', 150, 1);
     function manageNewUser($user_id) {
-        wp_clear_auth_cookie();
+        //wp_clear_auth_cookie();
         wp_set_current_user($user_id);
         $survey_page_id = get_option('registration_survey_page');
         $user = get_user_by( 'id', $user_id );
         // set the WP login cookie
         $secure_cookie = is_ssl() ? true : false;
         wp_set_auth_cookie( $user_id, true, $secure_cookie );
+		update_user_meta( $user_id, 'account_status', 'awaiting_admin_review' );
         do_action( 'wp_login', $user->user_login, $user );
         wp_safe_redirect(empty($survey_page_id) ? get_home_url() : get_permalink($survey_page_id), 302);
         exit();
