@@ -38,7 +38,7 @@
             }
         } else if($user_status == 'approved'){
             $after_login_page_id = get_option('approved_login_redirection');
-            wp_safe_redirect(empty($after_login_page_id) ? get_home_url() : $after_login_page_id);
+            wp_safe_redirect(empty($after_login_page_id) ? get_home_url() : get_permalink($after_login_page_id));
             exit();
         }
     }
