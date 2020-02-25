@@ -123,6 +123,14 @@
         wp_set_current_user($user_id);
         $survey_page_id = get_option('registration_survey_page');
         $user = get_user_by( 'id', $user_id );
+
+        if(isset($_REQUEST)) {
+            $form_id = $_REQUEST['form_id'] ?? '';
+            $key = "-" . $form_id;
+            update_user_meta($user_id, 'first_name', $_REQUEST["first_name${key}"] ?? 'nop' );
+            update_user_meta($user_id, 'last_name', $_REQUEST["last_name${key}"] ?? 'nop' );
+        }
+
         // set the WP login cookie
         $secure_cookie = is_ssl() ? true : false;
         wp_set_auth_cookie( $user_id, true, $secure_cookie );
